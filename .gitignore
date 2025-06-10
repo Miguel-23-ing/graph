@@ -1,0 +1,51 @@
+# Node
+node_modules/
+dist/
+build/
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Coverage
+coverage/
+*.lcov
+
+# TypeScript
+*.tsbuildinfo
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.sw?
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Database files (if using SQLite locally)
+*.sqlite
+*.sqlite3
+*.db
+
+# PM2 logs
+pids
+logs
+*.pid
+*.seed
+
+# GraphQL codegen (if generated)
+generated/
+__generated__/
+
+# Others
+tmp/
+temp/
+.cache/
