@@ -1,4 +1,3 @@
-// src/schema/typeDefs/taskTypeDefs.ts
 import { gql } from 'graphql-tag';
 
 export const taskTypeDefs = gql`
@@ -11,9 +10,14 @@ export const taskTypeDefs = gql`
   }
 
   extend type Query {
-    # Admin puede pasar userId para obtener todas las tareas de ese usuario.
-    # Usuarios normales solo obtienen sus propias tareas (de sus proyectos).
+    # Obtener todas las tareas. 
+    # Admin puede usar userId para ver tareas de cualquier usuario.
+    # Usuarios normales solo verán tareas de sus propios proyectos.
     tasks(userId: Int): [Task!]!
+
+    # Obtener una tarea por ID.
+    # Solo el admin o el dueño del proyecto puede verla.
+    task(id: Int!): Task
   }
 
   extend type Mutation {

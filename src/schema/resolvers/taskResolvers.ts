@@ -1,4 +1,3 @@
-// src/schema/resolvers/taskResolvers.ts
 import { AppDataSource } from '../../data-source';
 import { Task } from '../../entities/Task';
 import { Project } from '../../entities/Project';
@@ -10,6 +9,7 @@ const userRepo = AppDataSource.getRepository(User);
 
 export const taskResolvers = {
   Query: {
+    // Obtener múltiples tareas, con control de acceso
     tasks: async (_: any, args: { userId?: number }, context: any) => {
       const user = context.user;
       if (!user) throw new Error('No autenticado');
@@ -19,7 +19,6 @@ export const taskResolvers = {
           throw new Error('No autorizado para ver tareas de otros usuarios');
         }
 
-        // Admin consultando tareas de otro usuario
         return await taskRepo.find({
           where: {
             project: {
@@ -31,7 +30,6 @@ export const taskResolvers = {
         });
       }
 
-      // Usuario autenticado (admin o no) consultando sus propias tareas
       return await taskRepo.find({
         where: {
           project: {
@@ -42,9 +40,30 @@ export const taskResolvers = {
         order: { id: 'ASC' },
       });
     },
+
+    // Obtener una tarea específica por ID
+    task: async (_: any, { id }: { id: number }, context: any) => {
+      const task = await taskRepo.findOne({
+        where: { id },
+        relations: ['project', 'project.user'],
+      });
+
+      if (!task) throw new Error('Tarea no encontrada');
+
+      const currentUser = context?.user;
+      if (!currentUser) throw new Error('No autenticado');
+
+      const isOwner = task.project.user.id === currentUser.id;
+      if (!currentUser.isAdmin && !isOwner) {
+        throw new Error('No autorizado');
+      }
+
+      return task;
+    },
   },
 
   Mutation: {
+    // Crear tarea
     createTask: async (
       _: any,
       args: { title: string; description: string; projectId: number },
@@ -73,6 +92,7 @@ export const taskResolvers = {
       return await taskRepo.save(newTask);
     },
 
+    // Actualizar tarea
     updateTask: async (
       _: any,
       args: { id: number; title?: string; description?: string; completed?: boolean },
@@ -100,6 +120,7 @@ export const taskResolvers = {
       return await taskRepo.save(task);
     },
 
+    // Eliminar tarea
     deleteTask: async (_: any, args: { id: number }, context: any) => {
       const user = context.user;
       if (!user) throw new Error('No autenticado');
@@ -120,6 +141,7 @@ export const taskResolvers = {
   },
 
   Task: {
+    // Resolver para la relación con el proyecto
     project: async (parent: Task) => {
       const projectId = typeof parent.project === 'object' ? parent.project.id : parent.project;
       return await projectRepo.findOne({

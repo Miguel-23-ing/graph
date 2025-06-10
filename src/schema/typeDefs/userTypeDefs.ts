@@ -15,13 +15,14 @@ export const userTypeDefs = gql`
   }
 
   extend type Query {
-    users: [User!]!
+    users: [User!]!         # solo admin
+    user(id: Int!): User    # admin o el mismo usuario
   }
 
   extend type Mutation {
     register(name: String!, email: String!, password: String!, isAdmin: Boolean): User!
     login(email: String!, password: String!): AuthPayload!
-    updateUser(id: Int!, name: String, email: String): User!
-    deleteUser(id: Int!): Boolean!
+    updateUser(id: Int!, name: String, email: String): User!    # solo admin
+    deleteUser(id: Int!): Boolean!                              # solo admin
   }
 `;
