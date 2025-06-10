@@ -30,6 +30,15 @@ export const taskResolvers = {
         });
       }
 
+      if (user.isAdmin) {
+        // Admin: ver todas las tareas
+        return await taskRepo.find({
+          relations: ['project', 'project.user'],
+          order: { id: 'ASC' },
+        });
+      }
+
+      // Usuario normal: solo sus tareas
       return await taskRepo.find({
         where: {
           project: {

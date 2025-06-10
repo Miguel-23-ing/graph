@@ -1,0 +1,664 @@
+{
+	"info": {
+		"_postman_id": "2b71560b-c1ae-405a-808a-3710aa08f7a1",
+		"name": "Happy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42130956"
+	},
+	"item": [
+		{
+			"name": "login admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  login(email: \"miguel@example.com\", password: \"123456\") {\r\n    token\r\n    user {\r\n      id\r\n      name\r\n      email\r\n      isAdmin\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  login(email: \"pinema@test.com\", password: \"123456\") {\r\n    token\r\n    user {\r\n      id\r\n      name\r\n      email\r\n      isAdmin\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImVtYWlsIjoicGluZW1hQHRlc3QuY29tIiwiaWF0IjoxNzQ5NTQyMTI1LCJleHAiOjE3NTAxNDY5MjV9.EP4NpL3zAjFm93Pfd4IvUFriLRTJkblF9MuLoGsBYNs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  register(name: \"Nuevo Usuario\", email: \"nuevo@example.com\", password: \"test123\", isAdmin: false) {\r\n    id\r\n    name\r\n    email\r\n    isAdmin\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login New User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  login(email: \"nuevo@example.com\", password: \"test123\") {\r\n    token\r\n    user {\r\n      id\r\n      name\r\n      email\r\n      isAdmin\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register Admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoibWlndWVsQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQxMzMzLCJleHAiOjE3NTAxNDYxMzN9.cP8tyKUfZ0adpZXQupXKKYUUcEJ8Y0WbIgIAxf5rODY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  register(name: \"Admin Nuevo\", email: \"admin2@example.com\", password: \"test123\", isAdmin: true) {\r\n    id\r\n    name\r\n    email\r\n    isAdmin\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoibWlndWVsQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQxMzMzLCJleHAiOjE3NTAxNDYxMzN9.cP8tyKUfZ0adpZXQupXKKYUUcEJ8Y0WbIgIAxf5rODY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n  users {\r\n    id\r\n    name\r\n    email\r\n    isAdmin\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoibWlndWVsQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQxMzMzLCJleHAiOjE3NTAxNDYxMzN9.cP8tyKUfZ0adpZXQupXKKYUUcEJ8Y0WbIgIAxf5rODY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  updateUser(id: 5, name: \"Usuario Editado\", email: \"nuevo_email@example.com\") {\r\n    id\r\n    name\r\n    email\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoibWlndWVsQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQxMzMzLCJleHAiOjE3NTAxNDYxMzN9.cP8tyKUfZ0adpZXQupXKKYUUcEJ8Y0WbIgIAxf5rODY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  deleteUser(id: 9)\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Project",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyLCJlbWFpbCI6Im51ZXZvQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQzNjQ1LCJleHAiOjE3NTAxNDg0NDV9.B-q2AN15hdAwCgtDOtCNtYTSXpsOBF-SiLMnf-RDEcQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  createProject(title: \"Proyecto 1\", content: \"Descripción del proyecto\") {\r\n    id\r\n    title\r\n    content\r\n    user {\r\n      id\r\n      name\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Projects",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyLCJlbWFpbCI6Im51ZXZvQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQzNjQ1LCJleHAiOjE3NTAxNDg0NDV9.B-q2AN15hdAwCgtDOtCNtYTSXpsOBF-SiLMnf-RDEcQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n  projects {\r\n    id\r\n    title\r\n    content\r\n    user {\r\n      id\r\n      name\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Projects By Admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoibWlndWVsQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQxMzMzLCJleHAiOjE3NTAxNDYxMzN9.cP8tyKUfZ0adpZXQupXKKYUUcEJ8Y0WbIgIAxf5rODY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n  projects {\r\n    id\r\n    title\r\n    content\r\n    user {\r\n      id\r\n      name\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Project",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoibWlndWVsQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQxMzMzLCJleHAiOjE3NTAxNDYxMzN9.cP8tyKUfZ0adpZXQupXKKYUUcEJ8Y0WbIgIAxf5rODY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  updateProject(id: 10, title: \"Proyecto Actualizado\", content: \"Descripción nueva\") {\r\n    id\r\n    title\r\n    content\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Project",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoibWlndWVsQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQxMzMzLCJleHAiOjE3NTAxNDYxMzN9.cP8tyKUfZ0adpZXQupXKKYUUcEJ8Y0WbIgIAxf5rODY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  deleteProject(id: 10)\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoibWlndWVsQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQxMzMzLCJleHAiOjE3NTAxNDYxMzN9.cP8tyKUfZ0adpZXQupXKKYUUcEJ8Y0WbIgIAxf5rODY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  createTask(title: \"Tarea 1\", description: \"Descripción de tarea\", projectId: 11) {\r\n    id\r\n    title\r\n    completed\r\n    project {\r\n      id\r\n      title\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyLCJlbWFpbCI6Im51ZXZvQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQzNjQ1LCJleHAiOjE3NTAxNDg0NDV9.B-q2AN15hdAwCgtDOtCNtYTSXpsOBF-SiLMnf-RDEcQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n  tasks {\r\n    id\r\n    title\r\n    completed\r\n    project {\r\n      id\r\n      title\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tasks By Admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoibWlndWVsQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQ1ODE0LCJleHAiOjE3NTAxNTA2MTR9.1cL4a4SBlrvT28IrGFAZ51v-tiMf9w5fBdNKr3xiuJo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n  tasks {\r\n    id\r\n    title\r\n    completed\r\n    project {\r\n      id\r\n      title\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tasks By Admin of one User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoibWlndWVsQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQ1ODE0LCJleHAiOjE3NTAxNTA2MTR9.1cL4a4SBlrvT28IrGFAZ51v-tiMf9w5fBdNKr3xiuJo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n  tasks(userId: 7) {\r\n    id\r\n    title\r\n    completed\r\n    project {\r\n      id\r\n      title\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyLCJlbWFpbCI6Im51ZXZvQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQzNjQ1LCJleHAiOjE3NTAxNDg0NDV9.B-q2AN15hdAwCgtDOtCNtYTSXpsOBF-SiLMnf-RDEcQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  updateTask(id: 3, title: \"Tarea Modificada\", completed: true) {\r\n    id\r\n    title\r\n    completed\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyLCJlbWFpbCI6Im51ZXZvQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ5NTQzNjQ1LCJleHAiOjE3NTAxNDg0NDV9.B-q2AN15hdAwCgtDOtCNtYTSXpsOBF-SiLMnf-RDEcQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  updateTask(id: 3, title: \"Tarea Modificada\", completed: true) {\r\n    id\r\n    title\r\n    completed\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
